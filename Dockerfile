@@ -30,7 +30,7 @@ RUN apt-get -y install python-pip python-dev build-essential zip
 RUN pip install awscli
 
 # Install Packer
-RUN cd /tmp && wget -quiet https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
+RUN cd /tmp && wget -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
 RUN cd /tmp && unzip packer_0.7.5_linux_amd64.zip -d /usr/bin/
 RUN packer version
 
