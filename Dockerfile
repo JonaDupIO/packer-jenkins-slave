@@ -24,7 +24,7 @@ RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
 
 # Install PIP 
-RUN apt-get -y install python-pip python-dev build-essential zip
+RUN apt-get -y install python-pip python-dev build-essential zip git
 
 # Install AWS-CLI
 RUN pip install awscli
