@@ -2,6 +2,10 @@
 FROM ubuntu:14.04
 MAINTAINER Jonathan Dupuich <jonathan.dupuich@gmail.com>
 
+# Set locales
+RUN echo "Europe/Paris" > /etc/timezone; dpkg-reconfigure -f noninteractive tzdata
+RUN export LANGUAGE=en_US.UTF-8; export LANG=en_US.UTF-8; export LC_ALL=en_US.UTF-8; locale-gen en_US.UTF-8; DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+
 # Make sure the image is up-to-date
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -26,7 +30,7 @@ RUN apt-get -y install python-pip python-dev build-essential zip
 RUN pip install awscli
 
 # Install Packer
-RUN cd /tmp && wget https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
+RUN cd /tmp && wget -quiet https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
 RUN cd /tmp && unzip packer_0.7.5_linux_amd64.zip -d /usr/bin/
 RUN packer version
 
