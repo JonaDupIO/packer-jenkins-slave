@@ -38,8 +38,9 @@ RUN cd /tmp && unzip packer_0.7.5_linux_amd64.zip -d /usr/bin/
 RUN packer version
 
 # Install Virtualbox
-RUN apt-get -y install virtualbox
-
+RUN apt-get -y install libaudio2 libcaca0 libcurl3 libmysqlclient18 libqt4-declarative libqt4-network libqt4-opengl libqt4-script libqt4-sql libqt4-sql-mysql libqt4-xml libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtgui4 libsdl1.2debian mysql-common qtcore4-l10n
+RUN wget http://download.virtualbox.org/virtualbox/4.3.26/virtualbox-4.3_4.3.26-98988~Ubuntu~raring_amd64.deb
+RUN dpkg -i virtualbox-4.3_4.3.26-98988~Ubuntu~raring_amd64.deb
 # Standard SSH port
 EXPOSE 22
 
