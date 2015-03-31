@@ -37,6 +37,9 @@ RUN cd /tmp && wget -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linu
 RUN cd /tmp && unzip packer_0.7.5_linux_amd64.zip -d /usr/bin/
 RUN packer version
 
+# Install Virtualbox
+RUN apt-get -y install virtualbox
+
 # Standard SSH port
 EXPOSE 22
 
