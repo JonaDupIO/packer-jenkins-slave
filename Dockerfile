@@ -24,7 +24,10 @@ RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
 
 # Install PIP 
-RUN apt-get -y install build-essential zip git
+RUN apt-get -y install python-pip python-dev build-essential zip git
+
+# Install AWS-CLI
+RUN pip install awscli
 
 # Install Packer
 RUN cd /tmp && wget -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
