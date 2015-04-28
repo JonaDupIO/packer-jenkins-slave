@@ -24,25 +24,14 @@ RUN adduser --quiet jenkins
 RUN echo "jenkins:jenkins" | chpasswd
 
 # Install PIP 
-RUN apt-get -y install python-pip python-dev build-essential zip git
-
-# Install AWS-CLI
-RUN pip install awscli
-
-# Install boto
-RUN pip install boto
+RUN apt-get -y install build-essential zip git
 
 # Install Packer
 RUN cd /tmp && wget -q https://dl.bintray.com/mitchellh/packer/packer_0.7.5_linux_amd64.zip
 RUN cd /tmp && unzip packer_0.7.5_linux_amd64.zip -d /usr/bin/
 RUN packer version
 
-# Install Virtualbox
-RUN apt-get -y install libaudio2 libcaca0 libcurl3 libmysqlclient18 libqt4-declarative libqt4-network libqt4-opengl libqt4-script libqt4-sql libqt4-sql-mysql libqt4-xml libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtgui4 libsdl1.2debian mysql-common qtcore4-l10n dkms
-RUN wget http://download.virtualbox.org/virtualbox/4.3.26/virtualbox-4.3_4.3.26-98988~Ubuntu~raring_amd64.deb
-RUN dpkg -i virtualbox-4.3_4.3.26-98988~Ubuntu~raring_amd64.deb
-# Standard SSH port
+# Expose SSH port
 EXPOSE 22
-EXPOSE 10000
 
 CMD ["/usr/sbin/sshd", "-D"]
